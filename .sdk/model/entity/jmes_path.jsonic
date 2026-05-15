@@ -1,0 +1,42 @@
+# Entity: jmes_path
+
+main: kit: entity: jmes_path: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "data"
+      req: true
+      type: "`$ANY`"
+    }
+    {
+      name: "query"
+      req: true
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "jmes_path"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/jmespath"
+          parts: [
+            "jmespath"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

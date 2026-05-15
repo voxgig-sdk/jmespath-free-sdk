@@ -1,0 +1,26 @@
+{
+  "existing": {
+    "jmes_path": {
+      "JMES_PATH00": {
+        "data": "s14",
+        "query": "s15"
+      },
+      "JMES_PATH01": {
+        "data": "s28",
+        "query": "s29"
+      },
+      "JMES_PATH02": {
+        "data": "s3c",
+        "query": "s3d"
+      }
+    }
+  },
+  "new": {
+    "jmes_path": {
+      "jmes_path_ref01": {
+        "data": "s50",
+        "query": "s51"
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "https://noteapiconnector.com/jmespath-free-api"
+      }
+      description: "The JMESPath free API provides a serverless endpoint for running JSON transformations using the JMESPath query language. It enables users to quickly filter, reshape, and extract data from JSON without the need for deploying any infrastructure. This API is ideal for prototyping and low-volume automation tasks."
+      servers: [
+        {
+          description: "Production serverless endpoint"
+          url: "https://noteapiconnector-tools.vercel.app/api"
+        }
+      ]
+      termsOfService: "https://noteapiconnector.com/terms-of-service"
+      title: "JMESPath Free API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

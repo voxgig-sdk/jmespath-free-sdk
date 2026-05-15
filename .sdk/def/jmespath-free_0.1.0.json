@@ -1,0 +1,260 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "JMESPath Free API",
+    "description": "The JMESPath free API provides a serverless endpoint for running JSON transformations using the JMESPath query language. It enables users to quickly filter, reshape, and extract data from JSON without the need for deploying any infrastructure. This API is ideal for prototyping and low-volume automation tasks.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://noteapiconnector.com/jmespath-free-api"
+    },
+    "termsOfService": "https://noteapiconnector.com/terms-of-service"
+  },
+  "servers": [
+    {
+      "url": "https://noteapiconnector-tools.vercel.app/api",
+      "description": "Production serverless endpoint"
+    }
+  ],
+  "paths": {
+    "/jmespath": {
+      "post": {
+        "summary": "Transform JSON data using JMESPath",
+        "description": "Evaluates a JMESPath expression against the provided JSON data and returns the transformed result. This endpoint is CORS-enabled and does not require authentication.",
+        "operationId": "transformJson",
+        "tags": [
+          "JMESPath"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "data",
+                  "query"
+                ],
+                "properties": {
+                  "data": {
+                    "oneOf": [
+                      {
+                        "type": "object"
+                      },
+                      {
+                        "type": "array"
+                      }
+                    ],
+                    "description": "The JSON object or array to transform"
+                  },
+                  "query": {
+                    "type": "string",
+                    "description": "The JMESPath expression string to evaluate against the data",
+                    "example": "people[?age>`25`].name"
+                  }
+                }
+              },
+              "examples": {
+                "filterPeople": {
+                  "summary": "Filter people by age",
+                  "value": {
+                    "data": {
+                      "people": [
+                        {
+                          "name": "Ana",
+                          "age": 30
+                        },
+                        {
+                          "name": "Bob",
+                          "age": 20
+                        }
+                      ]
+                    },
+                    "query": "people[?age>`25`].name"
+                  }
+                },
+                "filterTasks": {
+                  "summary": "Filter unfinished tasks",
+                  "value": {
+                    "data": {
+                      "tasks": [
+                        {
+                          "title": "Draft docs",
+                          "completed": false,
+                          "priority": 2
+                        },
+                        {
+                          "title": "Send invoice",
+                          "completed": true,
+                          "priority": 1
+                        },
+                        {
+                          "title": "Plan launch",
+                          "completed": false,
+                          "priority": 3
+                        }
+                      ]
+                    },
+                    "query": "tasks[?completed==`false`].title"
+                  }
+                },
+                "projectNestedFields": {
+                  "summary": "Project nested contact fields",
+                  "value": {
+                    "data": {
+                      "customers": [
+                        {
+                          "name": "Asha Patel",
+                          "contact": {
+                            "email": "asha@example.com",
+                            "city": "Austin"
+                          }
+                        },
+                        {
+                          "name": "Lee Wong",
+                          "contact": {
+                            "email": "lee@example.com",
+                            "city": "Seattle"
+                          }
+                        }
+                      ]
+                    },
+                    "query": "customers[].{name: name, email: contact.email}"
+                  }
+                },
+                "sortAndLimit": {
+                  "summary": "Sort by rating and get top results",
+                  "value": {
+                    "data": {
+                      "products": [
+                        {
+                          "name": "Starter",
+                          "rating": 4.2
+                        },
+                        {
+                          "name": "Pro",
+                          "rating": 4.8
+                        },
+                        {
+                          "name": "Enterprise",
+                          "rating": 4.6
+                        }
+                      ]
+                    },
+                    "query": "reverse(sort_by(products, &rating))[:2].name"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully transformed JSON data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object"
+                    },
+                    {
+                      "type": "array"
+                    },
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "The result of evaluating the JMESPath query against the provided data"
+                },
+                "examples": {
+                  "arrayResult": {
+                    "summary": "Array of filtered names",
+                    "value": [
+                      "Ana"
+                    ]
+                  },
+                  "objectArrayResult": {
+                    "summary": "Array of projected objects",
+                    "value": [
+                      {
+                        "name": "Asha Patel",
+                        "email": "asha@example.com"
+                      },
+                      {
+                        "name": "Lee Wong",
+                        "email": "lee@example.com"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid JMESPath query or malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Descriptive error message explaining what went wrong with the query"
+                    }
+                  }
+                },
+                "examples": {
+                  "invalidQuery": {
+                    "summary": "Invalid JMESPath expression",
+                    "value": {
+                      "error": "RuntimeError: Invalid token: Parse error at column 11..."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error message describing the server error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "JMESPath",
+      "description": "JSON transformation operations using JMESPath query language",
+      "externalDocs": {
+        "description": "JMESPath specification",
+        "url": "https://jmespath.org/"
+      }
+    }
+  ],
+  "externalDocs": {
+    "description": "Full API documentation and examples",
+    "url": "https://noteapiconnector.com/jmespath-free-api"
+  }
+}
