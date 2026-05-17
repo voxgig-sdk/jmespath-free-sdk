@@ -3,15 +3,18 @@
     "jmes_path": {
       "JMES_PATH00": {
         "data": "s14",
-        "query": "s15"
+        "query": "s15",
+        "id": "JMES_PATH00"
       },
       "JMES_PATH01": {
         "data": "s28",
-        "query": "s29"
+        "query": "s29",
+        "id": "JMES_PATH01"
       },
       "JMES_PATH02": {
         "data": "s3c",
-        "query": "s3d"
+        "query": "s3d",
+        "id": "JMES_PATH02"
       }
     }
   },

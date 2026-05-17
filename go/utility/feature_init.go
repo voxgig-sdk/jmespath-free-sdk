@@ -1,9 +1,9 @@
 package utility
 
 import (
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/jmespath-free-sdk/go/utility/struct"
 
-	"github.com/voxgig-sdk/jmespath-free-sdk/core"
+	"github.com/voxgig-sdk/jmespath-free-sdk/go/core"
 )
 
 func featureInitUtil(ctx *core.Context, f core.Feature) {

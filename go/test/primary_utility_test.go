@@ -4,9 +4,9 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/jmespath-free-sdk"
+	sdk "github.com/voxgig-sdk/jmespath-free-sdk/go"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/jmespath-free-sdk/go/utility/struct"
 )
 
 func TestPrimaryUtility(t *testing.T) {

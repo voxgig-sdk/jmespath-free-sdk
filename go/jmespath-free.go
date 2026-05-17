@@ -1,10 +1,10 @@
 package voxgigjmespathfreesdk
 
 import (
-	"github.com/voxgig-sdk/jmespath-free-sdk/core"
-	"github.com/voxgig-sdk/jmespath-free-sdk/entity"
-	"github.com/voxgig-sdk/jmespath-free-sdk/feature"
-	_ "github.com/voxgig-sdk/jmespath-free-sdk/utility"
+	"github.com/voxgig-sdk/jmespath-free-sdk/go/core"
+	"github.com/voxgig-sdk/jmespath-free-sdk/go/entity"
+	"github.com/voxgig-sdk/jmespath-free-sdk/go/feature"
+	_ "github.com/voxgig-sdk/jmespath-free-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

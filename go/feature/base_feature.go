@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/jmespath-free-sdk/core"
+	"github.com/voxgig-sdk/jmespath-free-sdk/go/core"
 )
 
 type BaseFeature struct {

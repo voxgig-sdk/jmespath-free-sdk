@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/voxgig-sdk/jmespath-free-sdk/core"
+	"github.com/voxgig-sdk/jmespath-free-sdk/go/core"
 )
 
 type LogFeature struct {

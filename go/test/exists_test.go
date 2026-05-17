@@ -3,7 +3,7 @@ package sdktest
 import (
 	"testing"
 
-	sdk "github.com/voxgig-sdk/jmespath-free-sdk"
+	sdk "github.com/voxgig-sdk/jmespath-free-sdk/go"
 )
 
 func TestExists(t *testing.T) {
