@@ -14,9 +14,6 @@ local function make_config()
     },
     options = {
       base = "https://noteapiconnector-tools.vercel.app/api",
-      auth = {
-        prefix = "Bearer",
-      },
       headers = {
         ["content-type"] = "application/json",
       },

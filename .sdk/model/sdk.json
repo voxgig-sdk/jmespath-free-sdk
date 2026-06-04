@@ -17,7 +17,15 @@
         ],
         "termsOfService": "https://noteapiconnector.com/terms-of-service",
         "title": "JMESPath Free API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "tagline": "Run JMESPath queries against arbitrary JSON over a serverless HTTP endpoint",
+        "homepage": "https://noteapiconnector.com",
+        "docs_url": "https://freepublicapis.com/jmespath-free-api",
+        "about_md": "[JMESPath Free API](https://freepublicapis.com/jmespath-free-api) is a serverless endpoint that runs [JMESPath](https://jmespath.org) queries against arbitrary JSON payloads. It is hosted on Vercel and operated by [Note API Connector](https://noteapiconnector.com), where JMESPath transformations are also offered as part of their wider Notion integration tooling.\n\nWhat you get from the API:\n\n- A single `POST /jmespath` endpoint that accepts a JSON body containing `data` (the JSON to query) and `query` (the JMESPath expression).\n- The result of evaluating the JMESPath expression against the supplied data, returned as JSON.\n- A way to filter, reshape, and extract values from JSON without standing up your own JMESPath runtime.\n\nThe service is intended for prototyping and low-volume automation rather than heavy production traffic. CORS is enabled, and the public catalogue listing does not mention authentication keys or hard rate limits.",
+        "entity_desc": {
+          "jmes_path": "Evaluation of a JMESPath expression against a supplied JSON document via `POST /jmespath` with `data` and `query` fields in the JSON body."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -25,7 +33,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "jmes_path": {

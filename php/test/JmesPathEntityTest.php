@@ -80,7 +80,6 @@ function jmes_path_basic_setup($extra)
         "JMESPATHFREE_TEST_JMES_PATH_ENTID" => $idmap,
         "JMESPATHFREE_TEST_LIVE" => "FALSE",
         "JMESPATHFREE_TEST_EXPLAIN" => "FALSE",
-        "JMESPATHFREE_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -92,7 +91,6 @@ function jmes_path_basic_setup($extra)
     if ($env["JMESPATHFREE_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["JMESPATHFREE_APIKEY"],
             ],
             $extra ?? [],
         ]);
