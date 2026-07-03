@@ -10,13 +10,13 @@ The Ruby SDK for the JmespathFree API — an entity-oriented client using idioma
 
 ## Install
 ```bash
-gem install jmespath-free-sdk
+gem install voxgig-sdk-jmespath-free
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "jmespath-free-sdk"
+gem "voxgig-sdk-jmespath-free"
 ```
 
 Then run:

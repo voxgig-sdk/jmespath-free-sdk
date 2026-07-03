@@ -1,8 +1,17 @@
 {
   "name": "voxgig-sdk/jmespath-free",
-  "description": "JmespathFree SDK for PHP",
+  "description": "Unofficial generated PHP SDK for the JMESPath Free public API. Not affiliated with or endorsed by the upstream API provider.",
   "type": "library",
+  "keywords": ["voxgig", "sdk", "generated-sdk", "openapi", "api-client", "jmespath-free"],
+  "homepage": "https://github.com/voxgig-sdk/jmespath-free-sdk",
   "license": "MIT",
+  "authors": [
+    { "name": "Voxgig", "homepage": "https://voxgig.com" }
+  ],
+  "support": {
+    "issues": "https://github.com/voxgig-sdk/jmespath-free-sdk/issues",
+    "source": "https://github.com/voxgig-sdk/jmespath-free-sdk"
+  },
   "minimum-stability": "stable",
   "require": {
     "php": ">=8.2"

@@ -10,7 +10,7 @@ The Python SDK for the JmespathFree API — an entity-oriented client following 
 
 ## Install
 ```bash
-pip install jmespath-free-sdk
+pip install voxgig-sdk-jmespath-free
 ```
 
 Or install from source:

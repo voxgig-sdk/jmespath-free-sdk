@@ -10,7 +10,7 @@ The PHP SDK for the JmespathFree API — an entity-oriented client using PHP con
 
 ## Install
 ```bash
-composer require voxgig/jmespath-free-sdk
+composer require voxgig-sdk/jmespath-free
 ```
 
 

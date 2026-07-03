@@ -10,7 +10,7 @@ The TypeScript SDK for the JmespathFree API — a type-safe, entity-oriented cli
 
 ## Install
 ```bash
-npm install jmespath-free
+npm install @voxgig-sdk/jmespath-free
 ```
 ## Tutorial: your first API call
 

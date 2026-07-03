@@ -8,12 +8,14 @@ source = {
   dir = "jmespath-free-sdk/lua"
 }
 description = {
-  summary = "JmespathFree SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the JMESPath Free public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/jmespath-free-sdk",
+  issues_url = "https://github.com/voxgig-sdk/jmespath-free-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "jmespath-free" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {
