@@ -86,6 +86,7 @@ function jmes_path_basic_setup(extra)
     ["JMESPATHFREE_TEST_JMES_PATH_ENTID"] = idmap,
     ["JMESPATHFREE_TEST_LIVE"] = "FALSE",
     ["JMESPATHFREE_TEST_EXPLAIN"] = "FALSE",
+    ["JMESPATHFREE_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -97,6 +98,7 @@ function jmes_path_basic_setup(extra)
   if env["JMESPATHFREE_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
+        apikey = env["JMESPATHFREE_APIKEY"],
       },
       extra or {},
     })

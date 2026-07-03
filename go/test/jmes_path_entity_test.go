@@ -110,6 +110,7 @@ func jmes_pathBasicSetup(extra map[string]any) *entityTestSetup {
 		"JMESPATHFREE_TEST_JMES_PATH_ENTID": idmap,
 		"JMESPATHFREE_TEST_LIVE":      "FALSE",
 		"JMESPATHFREE_TEST_EXPLAIN":   "FALSE",
+		"JMESPATHFREE_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["JMESPATHFREE_TEST_JMES_PATH_ENTID"])
@@ -120,6 +121,7 @@ func jmes_pathBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["JMESPATHFREE_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["JMESPATHFREE_APIKEY"],
 			},
 			extra,
 		})

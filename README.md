@@ -1,20 +1,8 @@
 # JmespathFree SDK
 
-Run JMESPath queries against arbitrary JSON over a serverless HTTP endpoint
+JMESPath Free API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About JMESPath Free API
-
-[JMESPath Free API](https://freepublicapis.com/jmespath-free-api) is a serverless endpoint that runs [JMESPath](https://jmespath.org) queries against arbitrary JSON payloads. It is hosted on Vercel and operated by [Note API Connector](https://noteapiconnector.com), where JMESPath transformations are also offered as part of their wider Notion integration tooling.
-
-What you get from the API:
-
-- A single `POST /jmespath` endpoint that accepts a JSON body containing `data` (the JSON to query) and `query` (the JMESPath expression).
-- The result of evaluating the JMESPath expression against the supplied data, returned as JSON.
-- A way to filter, reshape, and extract values from JSON without standing up your own JMESPath runtime.
-
-The service is intended for prototyping and low-volume automation rather than heavy production traffic. CORS is enabled, and the public catalogue listing does not mention authentication keys or hard rate limits.
 
 ## Try it
 
@@ -48,27 +36,28 @@ gem install jmespath-free-sdk
 luarocks install jmespath-free-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { JmespathFreeSDK } from 'jmespath-free'
 
-const client = new JmespathFreeSDK({})
+const client = new JmespathFreeSDK({
+  apikey: process.env.JMESPATH-FREE_APIKEY,
+})
 
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -98,7 +87,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **JmesPath** | Evaluation of a JMESPath expression against a supplied JSON document via `POST /jmespath` with `data` and `query` fields in the JSON body. | `/jmespath` |
+| **JmesPath** |  | `/jmespath` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -108,9 +97,12 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from jmespathfree_sdk import JmespathFreeSDK
 
-client = JmespathFreeSDK({})
+client = JmespathFreeSDK({
+    "apikey": os.environ.get("JMESPATH-FREE_APIKEY"),
+})
 
 ```
 
@@ -120,7 +112,9 @@ client = JmespathFreeSDK({})
 <?php
 require_once 'jmespathfree_sdk.php';
 
-$client = new JmespathFreeSDK([]);
+$client = new JmespathFreeSDK([
+    "apikey" => getenv("JMESPATH-FREE_APIKEY"),
+]);
 
 ```
 
@@ -129,7 +123,9 @@ $client = new JmespathFreeSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/jmespath-free-sdk/go"
 
-client := sdk.NewJmespathFreeSDK(map[string]any{})
+client := sdk.NewJmespathFreeSDK(map[string]any{
+    "apikey": os.Getenv("JMESPATH-FREE_APIKEY"),
+})
 
 ```
 
@@ -138,7 +134,9 @@ client := sdk.NewJmespathFreeSDK(map[string]any{})
 ```ruby
 require_relative "JmespathFree_sdk"
 
-client = JmespathFreeSDK.new({})
+client = JmespathFreeSDK.new({
+  "apikey" => ENV["JMESPATH-FREE_APIKEY"],
+})
 
 ```
 
@@ -147,7 +145,9 @@ client = JmespathFreeSDK.new({})
 ```lua
 local sdk = require("jmespath-free_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("JMESPATH-FREE_APIKEY"),
+})
 
 ```
 
@@ -167,25 +167,21 @@ const result = await client.JmesPath().load({ id: 'test01' })
 ### Python
 
 ```python
-client = JmespathFreeSDK.test(None, None)
-result, err = client.JmesPath(None).load(
-    {"id": "test01"}, None
-)
+client = JmespathFreeSDK.test()
+result, err = client.JmesPath().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = JmespathFreeSDK::test(null, null);
-[$result, $err] = $client->JmesPath(null)->load(
-    ["id" => "test01"], null
-);
+$client = JmespathFreeSDK::test();
+[$result, $err] = $client->JmesPath()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.JmesPath(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -194,19 +190,15 @@ result, err := client.JmesPath(nil).Load(
 ### Ruby
 
 ```ruby
-client = JmespathFreeSDK.test(nil, nil)
-result, err = client.JmesPath(nil).load(
-  { "id" => "test01" }, nil
-)
+client = JmespathFreeSDK.test
+result, err = client.JmesPath().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:JmesPath(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:JmesPath():load({ id = "test01" })
 ```
 
 ## How it works
@@ -310,11 +302,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the JMESPath Free API
-
-- Upstream: [https://noteapiconnector.com](https://noteapiconnector.com)
-- API docs: [https://freepublicapis.com/jmespath-free-api](https://freepublicapis.com/jmespath-free-api)
 
 ---
 

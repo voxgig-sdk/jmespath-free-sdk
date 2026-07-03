@@ -15,6 +15,9 @@ def make_config():
         },
         "options": {
             "base": "https://noteapiconnector-tools.vercel.app/api",
+            "auth": {
+                "prefix": "Bearer",
+            },
             "headers": {
         "content-type": "application/json",
       },
@@ -26,42 +29,42 @@ def make_config():
       "jmes_path": {
         "fields": [
           {
+            "active": True,
             "name": "data",
             "req": True,
             "type": "`$ANY`",
-            "active": True,
             "index$": 0,
           },
           {
+            "active": True,
             "name": "query",
             "req": True,
             "type": "`$STRING`",
-            "active": True,
             "index$": 1,
           },
         ],
         "name": "jmes_path",
         "op": {
           "create": {
+            "input": "data",
             "name": "create",
             "points": [
               {
+                "active": True,
+                "args": {},
                 "method": "POST",
                 "orig": "/jmespath",
                 "parts": [
                   "jmespath",
                 ],
+                "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
-                "args": {},
-                "select": {},
                 "index$": 0,
               },
             ],
-            "input": "data",
             "key$": "create",
           },
         },

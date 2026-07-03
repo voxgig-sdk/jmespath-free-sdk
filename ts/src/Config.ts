@@ -38,6 +38,10 @@ class Config {
   options = {
     base: 'https://noteapiconnector-tools.vercel.app/api',
 
+    auth: {
+      prefix: 'Bearer',
+    },
+
     headers: {
       "content-type": "application/json"
     },
@@ -55,42 +59,42 @@ class Config {
     "jmes_path": {
       "fields": [
         {
+          "active": true,
           "name": "data",
           "req": true,
           "type": "`$ANY`",
-          "active": true,
           "index$": 0
         },
         {
+          "active": true,
           "name": "query",
           "req": true,
           "type": "`$STRING`",
-          "active": true,
           "index$": 1
         }
       ],
       "name": "jmes_path",
       "op": {
         "create": {
+          "input": "data",
           "name": "create",
           "points": [
             {
+              "active": true,
+              "args": {},
               "method": "POST",
               "orig": "/jmespath",
               "parts": [
                 "jmespath"
               ],
+              "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
-              "args": {},
-              "select": {},
               "index$": 0
             }
           ],
-          "input": "data",
           "key$": "create"
         }
       },
