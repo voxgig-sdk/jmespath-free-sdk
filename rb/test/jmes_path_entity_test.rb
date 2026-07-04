@@ -36,8 +36,7 @@ class JmesPathEntityTest < Minitest::Test
     jmes_path_ref01_data = Helpers.to_map(Vs.getprop(
       Vs.getpath(setup[:data], "new.jmes_path"), "jmes_path_ref01"))
 
-    jmes_path_ref01_data_result, err = jmes_path_ref01_ent.create(jmes_path_ref01_data, nil)
-    assert_nil err
+    jmes_path_ref01_data_result = jmes_path_ref01_ent.create(jmes_path_ref01_data, nil)
     jmes_path_ref01_data = Helpers.to_map(jmes_path_ref01_data_result)
     assert !jmes_path_ref01_data.nil?
 
@@ -77,7 +76,6 @@ def jmes_path_basic_setup(extra)
     "JMESPATHFREE_TEST_JMES_PATH_ENTID" => idmap,
     "JMESPATHFREE_TEST_LIVE" => "FALSE",
     "JMESPATHFREE_TEST_EXPLAIN" => "FALSE",
-    "JMESPATHFREE_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -89,7 +87,6 @@ def jmes_path_basic_setup(extra)
   if env["JMESPATHFREE_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["JMESPATHFREE_APIKEY"],
       },
       extra || {},
     ])

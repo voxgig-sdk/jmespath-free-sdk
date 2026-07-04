@@ -245,6 +245,9 @@ func (sdk *JmespathFreeSDK) Direct(fetchargs map[string]any) (map[string]any, er
 }
 
 
+// JmesPath returns a JmesPath entity bound to this client.
+// Idiomatic usage: client.JmesPath(nil).List(nil, nil) or
+// client.JmesPath(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *JmespathFreeSDK) JmesPath(data map[string]any) JmespathFreeEntity {
 	return NewJmesPathEntityFunc(sdk, data)
 }

@@ -83,6 +83,10 @@ end
 
 
 
+---@param reqdata JmesPathCreateData
+---@param ctrl? table
+---@return JmesPath
+---@return string? err
 function JmesPathEntity:create(reqdata, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

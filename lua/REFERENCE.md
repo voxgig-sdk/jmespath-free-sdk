@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -84,7 +83,7 @@ same parameters as `direct()`.
 ## JmesPathEntity
 
 ```lua
-local jmes_path = client:JmesPath(nil)
+local jmes_path = client:jmes_path(nil)
 ```
 
 ### Fields
@@ -101,7 +100,7 @@ local jmes_path = client:JmesPath(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:JmesPath():create({
+local result, err = client:jmes_path():create({
   data = --[[ `$ANY` ]],
   query = --[[ `$STRING` ]],
 })

@@ -9,12 +9,9 @@ The Lua SDK for the JmespathFree API — an entity-oriented client using Lua con
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-jmespath-free
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/jmespath-free-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -31,16 +28,14 @@ loading a specific record.
 ```lua
 local sdk = require("jmespath-free_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("JMESPATH-FREE_APIKEY"),
-})
+local client = sdk.new()
 ```
 
 ### 4. Create, update, and remove
 
 ```lua
 -- Create
-local created, _ = client:JmesPath():create({ name = "Example" })
+local created, _ = client:jmespath():create({ name = "Example" })
 
 ```
 
@@ -87,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:JmespathFree():load({ id = "test01" })
+local result, err = client:jmespath():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -120,8 +115,7 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-JMESPATH-FREE_TEST_LIVE=TRUE
-JMESPATH-FREE_APIKEY=<your-key>
+JMESPATH_FREE_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -144,7 +138,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -222,7 +215,7 @@ API path: `/jmespath`
 
 ### JmesPath
 
-Create an instance: `const jmes_path = client.JmesPath()`
+Create an instance: `const jmes_path = client.jmes_path`
 
 #### Operations
 
@@ -240,7 +233,7 @@ Create an instance: `const jmes_path = client.JmesPath()`
 #### Example: Create
 
 ```ts
-const jmes_path = await client.JmesPath().create({
+const jmes_path = await client.jmes_path.create({
   data: /* `$ANY` */,
   query: /* `$STRING` */,
 })
@@ -318,11 +311,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local jmespath = client:jmespath()
+jmespath:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- jmespath:data_get() now returns the loaded jmespath data
+-- jmespath:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

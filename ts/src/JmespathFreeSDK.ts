@@ -2,6 +2,8 @@
 
 import { JmesPathEntity } from './entity/JmesPathEntity'
 
+export type * from './JmespathFreeTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -202,6 +204,14 @@ class JmespathFreeSDK {
 
 
 
+  _jmes_path?: JmesPathEntity
+
+  // Idiomatic facade: `client.jmes_path.list()` / `client.jmes_path.load({ id })`.
+  get jmes_path(): JmesPathEntity {
+    return (this._jmes_path ??= new JmesPathEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.jmes_path` instead. */
   JmesPath(data?: any) {
     const self = this
     return new JmesPathEntity(self,data)

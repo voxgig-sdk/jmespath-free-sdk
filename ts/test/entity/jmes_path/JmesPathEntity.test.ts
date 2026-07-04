@@ -113,7 +113,6 @@ function basicSetup(extra?: any) {
     'JMESPATH_FREE_TEST_JMES_PATH_ENTID': idmap,
     'JMESPATH_FREE_TEST_LIVE': 'FALSE',
     'JMESPATH_FREE_TEST_EXPLAIN': 'FALSE',
-    'JMESPATH_FREE_APIKEY': 'NONE',
   })
 
   idmap = env['JMESPATH_FREE_TEST_JMES_PATH_ENTID']
@@ -123,7 +122,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new JmespathFreeSDK(merge([
       {
-        apikey: env.JMESPATH_FREE_APIKEY,
       },
       extra
     ]))

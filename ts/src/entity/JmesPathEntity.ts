@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  JmesPath,
+  JmesPathCreateData,
+} from '../JmespathFreeTypes'
 
 // TODO: needs Entity superclass
-class JmesPathEntity extends JmespathFreeEntityBase {
+class JmesPathEntity extends JmespathFreeEntityBase<JmesPath> {
 
   constructor(client: JmespathFreeSDK, entopts: any) {
     super(client, entopts)
@@ -34,7 +38,7 @@ class JmesPathEntity extends JmespathFreeEntityBase {
 
 
 
-  async create(this: any, reqdata?: any, ctrl?: Control) {
+  async create(this: any, reqdata?: JmesPathCreateData, ctrl?: Control): Promise<JmesPath> {
 
     const utility = this._utility
     const {
@@ -133,7 +137,9 @@ class JmesPathEntity extends JmespathFreeEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<JmesPath> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

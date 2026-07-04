@@ -45,6 +45,7 @@ class JmesPathEntity
     end
   end
 
+  # @return [JmesPath, Hash] the current JmesPath data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class JmesPathEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of JmesPath fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -67,6 +69,11 @@ class JmesPathEntity
   
 
   
+  # Create a new JmesPath.
+  #
+  # @param reqdata [JmesPathCreateData, Hash, nil] body data
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [JmesPath, Hash] the created JmesPath; raises JmespathFreeError on failure
   def create(reqdata, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

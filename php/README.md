@@ -9,9 +9,10 @@ The PHP SDK for the JmespathFree API — an entity-oriented client using PHP con
 
 
 ## Install
-```bash
-composer require voxgig-sdk/jmespath-free
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/jmespath-free-sdk/releases](https://github.com/voxgig-sdk/jmespath-free-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -25,16 +26,14 @@ loading a specific record.
 <?php
 require_once 'jmespathfree_sdk.php';
 
-$client = new JmespathFreeSDK([
-    "apikey" => getenv("JMESPATH-FREE_APIKEY"),
-]);
+$client = new JmespathFreeSDK();
 ```
 
 ### 4. Create, update, and remove
 
 ```php
 // Create
-[$created, $_] = $client->JmesPath()->create(["name" => "Example"]);
+$created = $client->jmespath()->create(["name" => "Example"]);
 
 ```
 
@@ -46,28 +45,31 @@ $client = new JmespathFreeSDK([
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -81,7 +83,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = JmespathFreeSDK::test();
 
-[$result, $err] = $client->JmespathFree()->load(["id" => "test01"]);
+$result = $client->jmespath()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -115,8 +117,7 @@ $client = new JmespathFreeSDK([
 Create a `.env.local` file at the project root:
 
 ```
-JMESPATH-FREE_TEST_LIVE=TRUE
-JMESPATH-FREE_APIKEY=<your-key>
+JMESPATH_FREE_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -139,7 +140,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -185,8 +185,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -217,7 +221,7 @@ API path: `/jmespath`
 
 ### JmesPath
 
-Create an instance: `const jmes_path = client.JmesPath()`
+Create an instance: `const jmes_path = client.jmes_path`
 
 #### Operations
 
@@ -235,7 +239,7 @@ Create an instance: `const jmes_path = client.JmesPath()`
 #### Example: Create
 
 ```ts
-const jmes_path = await client.JmesPath().create({
+const jmes_path = await client.jmes_path.create({
   data: /* `$ANY` */,
   query: /* `$STRING` */,
 })
@@ -313,11 +317,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$jmespath = $client->jmespath();
+$jmespath->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $jmespath->dataGet() now returns the loaded jmespath data
+// $jmespath->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

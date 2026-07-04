@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -110,7 +109,7 @@ Alias for `JmespathFreeSDK.test()`.
 ## JmesPathEntity
 
 ```ts
-const jmes_path = client.JmesPath()
+const jmes_path = client.jmes_path
 ```
 
 ### Fields
@@ -127,7 +126,7 @@ const jmes_path = client.JmesPath()
 Create a new entity with the given data.
 
 ```ts
-const result = await client.JmesPath().create({
+const result = await client.jmes_path.create({
   data: /* `$ANY` */,
   query: /* `$STRING` */,
 })

@@ -44,9 +44,7 @@ class TestJmesPathEntity:
         jmes_path_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.jmes_path"), "jmes_path_ref01"))
 
-        jmes_path_ref01_data_result, err = jmes_path_ref01_ent.create(jmes_path_ref01_data, None)
-        assert err is None
-        jmes_path_ref01_data = helpers.to_map(jmes_path_ref01_data_result)
+        jmes_path_ref01_data = helpers.to_map(jmes_path_ref01_ent.create(jmes_path_ref01_data, None))
         assert jmes_path_ref01_data is not None
 
 
@@ -87,7 +85,6 @@ def _jmes_path_basic_setup(extra):
         "JMESPATHFREE_TEST_JMES_PATH_ENTID": idmap,
         "JMESPATHFREE_TEST_LIVE": "FALSE",
         "JMESPATHFREE_TEST_EXPLAIN": "FALSE",
-        "JMESPATHFREE_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -98,7 +95,6 @@ def _jmes_path_basic_setup(extra):
     if env.get("JMESPATHFREE_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("JMESPATHFREE_APIKEY"),
             },
             extra or {},
         ])
