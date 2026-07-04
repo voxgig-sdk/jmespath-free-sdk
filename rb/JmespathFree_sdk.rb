@@ -208,13 +208,7 @@ class JmespathFreeSDK
   end
 
 
-  # Idiomatic facade: client.jmes_path.list / client.jmes_path.load({ "id" => ... })
-  def jmes_path
-    require_relative 'entity/jmes_path_entity'
-    @jmes_path ||= JmesPathEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.jmes_path instead.
+  # Canonical facade: client.JmesPath.list / client.JmesPath.load({ "id" => ... })
   def JmesPath(data = nil)
     require_relative 'entity/jmes_path_entity'
     JmesPathEntity.new(self, data)

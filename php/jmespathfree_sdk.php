@@ -233,10 +233,10 @@ class JmespathFreeSDK
 
     private $_jmes_path = null;
 
-    // Idiomatic facade: $client->jmes_path()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias JmesPath() (PHP method
-    // names are case-insensitive).
-    public function jmes_path($data = null)
+    // Canonical facade: $client->JmesPath()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->jmes_path()
+    // resolves here too.
+    public function JmesPath($data = null)
     {
         require_once __DIR__ . '/entity/jmes_path_entity.php';
         if ($data === null) {

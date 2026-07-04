@@ -220,25 +220,15 @@ class JmespathFreeSDK:
         }
 
 
-    @property
-    def jmes_path(self):
-        """Idiomatic facade: client.jmes_path.list() / client.jmes_path.load({"id": ...})."""
-        from entity.jmes_path_entity import JmesPathEntity
-        cached = getattr(self, "_jmes_path", None)
-        if cached is None:
-            cached = JmesPathEntity(self, None)
-            self._jmes_path = cached
-        return cached
-
-    def JmesPath(self, data=None):
-        # Deprecated: use client.jmes_path instead.
+    def JmesPath(self, data=None) -> "JmesPathEntity":
+        """Entity factory: client.JmesPath().list({}) / client.JmesPath().load({"id": ...})."""
         from entity.jmes_path_entity import JmesPathEntity
         return JmesPathEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "JmespathFreeSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -258,3 +248,9 @@ class JmespathFreeSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.jmes_path_entity import JmesPathEntity

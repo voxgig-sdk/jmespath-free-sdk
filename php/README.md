@@ -32,8 +32,8 @@ $client = new JmespathFreeSDK();
 ### 4. Create, update, and remove
 
 ```php
-// Create
-$created = $client->jmespath()->create(["name" => "Example"]);
+// create() returns the bare created JmesPath record.
+$created = $client->JmesPath()->create(["name" => "Example"]);
 
 ```
 
@@ -78,13 +78,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = JmespathFreeSDK::test();
+$client = JmespathFreeSDK::test([
+    "entity" => ["jmespath" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->jmespath()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$jmespath = $client->JmesPath()->load(["id" => "test01"]);
+print_r($jmespath);
 ```
 
 ### Use a custom fetch function
@@ -221,7 +225,7 @@ API path: `/jmespath`
 
 ### JmesPath
 
-Create an instance: `const jmes_path = client.jmes_path`
+Create an instance: `$jmes_path = $client->JmesPath();`
 
 #### Operations
 
@@ -238,11 +242,11 @@ Create an instance: `const jmes_path = client.jmes_path`
 
 #### Example: Create
 
-```ts
-const jmes_path = await client.jmes_path.create({
-  data: /* `$ANY` */,
-  query: /* `$STRING` */,
-})
+```php
+$jmes_path = $client->JmesPath()->create([
+    "data" => null, // `$ANY`
+    "query" => null, // `$STRING`
+]);
 ```
 
 
@@ -317,7 +321,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$jmespath = $client->jmespath();
+$jmespath = $client->JmesPath();
 $jmespath->load(["id" => "example_id"]);
 
 // $jmespath->dataGet() now returns the loaded jmespath data

@@ -34,8 +34,8 @@ client = JmespathFreeSDK()
 ### 4. Create, update, and remove
 
 ```python
-# Create
-created = client.jmespath.create({"name": "Example"})
+# Create — returns the bare created record (a dict)
+created = client.JmesPath().create({"name": "Example"})
 
 ```
 
@@ -82,8 +82,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = JmespathFreeSDK.test()
 
-result = client.jmespath.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+jmespath = client.JmesPath().load({"id": "test01"})
+# jmespath contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -217,7 +218,7 @@ API path: `/jmespath`
 
 ### JmesPath
 
-Create an instance: `const jmes_path = client.jmes_path`
+Create an instance: `jmes_path = client.JmesPath()`
 
 #### Operations
 
@@ -234,10 +235,10 @@ Create an instance: `const jmes_path = client.jmes_path`
 
 #### Example: Create
 
-```ts
-const jmes_path = await client.jmes_path.create({
-  data: /* `$ANY` */,
-  query: /* `$STRING` */,
+```python
+jmes_path = client.JmesPath().create({
+    "data": ...,  # `$ANY`
+    "query": ...,  # `$STRING`
 })
 ```
 
@@ -312,7 +313,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-jmespath = client.jmespath
+jmespath = client.JmesPath()
 jmespath.load({"id": "example_id"})
 
 # jmespath.data_get() now returns the loaded jmespath data

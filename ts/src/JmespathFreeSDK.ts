@@ -204,14 +204,7 @@ class JmespathFreeSDK {
 
 
 
-  _jmes_path?: JmesPathEntity
-
-  // Idiomatic facade: `client.jmes_path.list()` / `client.jmes_path.load({ id })`.
-  get jmes_path(): JmesPathEntity {
-    return (this._jmes_path ??= new JmesPathEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.jmes_path` instead. */
+  // Entity access: `client.JmesPath().list()` / `client.JmesPath().load({ id })`.
   JmesPath(data?: any) {
     const self = this
     return new JmesPathEntity(self,data)

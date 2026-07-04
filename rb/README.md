@@ -31,8 +31,8 @@ client = JmespathFreeSDK.new
 ### 4. Create, update, and remove
 
 ```ruby
-# Create
-created = client.jmespath.create({ "name" => "Example" })
+# create returns the bare created JmesPath record.
+created = client.JmesPath.create({ "name" => "Example" })
 
 ```
 
@@ -77,13 +77,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = JmespathFreeSDK.test
+client = JmespathFreeSDK.test({
+  "entity" => { "jmespath" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.jmespath.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+jmespath = client.JmesPath.load({ "id" => "test01" })
+puts jmespath
 ```
 
 ### Use a custom fetch function
@@ -216,7 +220,7 @@ API path: `/jmespath`
 
 ### JmesPath
 
-Create an instance: `const jmes_path = client.jmes_path`
+Create an instance: `jmes_path = client.JmesPath`
 
 #### Operations
 
@@ -233,10 +237,10 @@ Create an instance: `const jmes_path = client.jmes_path`
 
 #### Example: Create
 
-```ts
-const jmes_path = await client.jmes_path.create({
-  data: /* `$ANY` */,
-  query: /* `$STRING` */,
+```ruby
+jmes_path = client.JmesPath.create({
+  "data" => nil, # `$ANY`
+  "query" => nil, # `$STRING`
 })
 ```
 
@@ -312,7 +316,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-jmespath = client.jmespath
+jmespath = client.JmesPath
 jmespath.load({ "id" => "example_id" })
 
 # jmespath.data_get now returns the loaded jmespath data

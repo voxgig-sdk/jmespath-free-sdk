@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:jmes_path():list() / client:jmes_path():load({ id = ... })
-function JmespathFreeSDK:jmes_path(data)
+-- Idiomatic facade: client:JmesPath():list() / client:JmesPath():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function JmespathFreeSDK:JmesPath(data)
   local EntityMod = require("entity.jmes_path_entity")
   if data == nil then
     if self._jmes_path == nil then
@@ -253,12 +254,6 @@ function JmespathFreeSDK:jmes_path(data)
     end
     return self._jmes_path
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:jmes_path() instead.
-function JmespathFreeSDK:JmesPath(data)
-  local EntityMod = require("entity.jmes_path_entity")
   return EntityMod.new(self, data)
 end
 

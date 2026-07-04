@@ -4,21 +4,23 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class JmesPath:
+class JmesPath(TypedDict):
     data: Any
     query: str
 
 
-@dataclass
-class JmesPathCreateData:
-    data: Optional[Any] = None
-    query: Optional[str] = None
-
+class JmesPathCreateData(TypedDict, total=False):
+    data: Any
+    query: str

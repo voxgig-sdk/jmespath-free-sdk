@@ -86,7 +86,7 @@ same parameters as `direct()`. Raises on error.
 ## JmesPathEntity
 
 ```ruby
-jmes_path = client.jmes_path
+jmes_path = client.JmesPath
 ```
 
 ### Fields
@@ -103,7 +103,7 @@ jmes_path = client.jmes_path
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.jmes_path.create({
+result = client.JmesPath.create({
   "data" => # `$ANY`,
   "query" => # `$STRING`,
 })

@@ -80,7 +80,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## JmesPathEntity
 
 ```python
-jmes_path = client.jmes_path
+jmes_path = client.JmesPath()
 ```
 
 ### Fields
@@ -97,9 +97,9 @@ jmes_path = client.jmes_path
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.jmes_path.create({
-    "data": # `$ANY`,
-    "query": # `$STRING`,
+result = client.JmesPath().create({
+    "data": ...,  # `$ANY`
+    "query": ...,  # `$STRING`
 })
 ```
 

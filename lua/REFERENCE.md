@@ -83,7 +83,7 @@ same parameters as `direct()`.
 ## JmesPathEntity
 
 ```lua
-local jmes_path = client:jmes_path(nil)
+local jmes_path = client:JmesPath(nil)
 ```
 
 ### Fields
@@ -100,7 +100,7 @@ local jmes_path = client:jmes_path(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:jmes_path():create({
+local result, err = client:JmesPath():create({
   data = --[[ `$ANY` ]],
   query = --[[ `$STRING` ]],
 })

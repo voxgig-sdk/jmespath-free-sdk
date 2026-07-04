@@ -85,7 +85,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## JmesPathEntity
 
 ```php
-$jmes_path = $client->jmes_path();
+$jmes_path = $client->JmesPath();
 ```
 
 ### Fields
@@ -102,7 +102,7 @@ $jmes_path = $client->jmes_path();
 Create a new entity with the given data. Throws on error.
 
 ```php
-$result = $client->jmes_path()->create([
+$result = $client->JmesPath()->create([
   "data" => /* `$ANY` */,
   "query" => /* `$STRING` */,
 ]);

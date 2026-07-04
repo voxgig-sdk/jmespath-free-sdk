@@ -109,7 +109,7 @@ Alias for `JmespathFreeSDK.test()`.
 ## JmesPathEntity
 
 ```ts
-const jmes_path = client.jmes_path
+const jmes_path = client.JmesPath()
 ```
 
 ### Fields
@@ -126,7 +126,7 @@ const jmes_path = client.jmes_path
 Create a new entity with the given data.
 
 ```ts
-const result = await client.jmes_path.create({
+const result = await client.JmesPath().create({
   data: /* `$ANY` */,
   query: /* `$STRING` */,
 })
