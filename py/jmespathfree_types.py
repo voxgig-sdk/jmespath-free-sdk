@@ -21,6 +21,6 @@ class JmesPath(TypedDict):
     query: str
 
 
-class JmesPathCreateData(TypedDict, total=False):
+class JmesPathCreateData(TypedDict):
     data: Any
     query: str

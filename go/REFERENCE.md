@@ -97,8 +97,8 @@ jmes_path := client.JmesPath(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ANY`` | Yes |  |
-| `query` | ``$STRING`` | Yes |  |
+| `data` | `any` | Yes |  |
+| `query` | `string` | Yes |  |
 
 ### Operations
 
@@ -108,8 +108,8 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.JmesPath(nil).Create(map[string]any{
-    "data": /* `$ANY` */,
-    "query": /* `$STRING` */,
+    "data": /* any */,
+    "query": /* string */,
 }, nil)
 ```
 

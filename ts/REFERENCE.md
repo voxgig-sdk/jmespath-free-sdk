@@ -116,8 +116,8 @@ const jmes_path = client.JmesPath()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ANY`` | Yes |  |
-| `query` | ``$STRING`` | Yes |  |
+| `data` | `any` | Yes |  |
+| `query` | `string` | Yes |  |
 
 ### Operations
 
@@ -127,8 +127,8 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.JmesPath().create({
-  data: /* `$ANY` */,
-  query: /* `$STRING` */,
+  data: /* any */,
+  query: /* string */,
 })
 ```
 

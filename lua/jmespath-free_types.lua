@@ -11,6 +11,8 @@
 ---@field query string
 
 ---@class JmesPathCreateData
+---@field data any
+---@field query string
 
 local M = {}
 

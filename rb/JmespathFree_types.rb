@@ -21,13 +21,13 @@ JmesPath = Struct.new(
   keyword_init: true
 )
 
-# Match filter for JmesPath#create (any subset of JmesPath fields).
+# Request payload for JmesPath#create.
 #
 # @!attribute [rw] data
-#   @return [Object, nil]
+#   @return [Object]
 #
 # @!attribute [rw] query
-#   @return [String, nil]
+#   @return [String]
 JmesPathCreateData = Struct.new(
   :data,
   :query,

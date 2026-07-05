@@ -10,5 +10,8 @@ export interface JmesPath {
   query: string
 }
 
-export type JmesPathCreateData = Partial<JmesPath>
+export interface JmesPathCreateData {
+  data: any
+  query: string
+}
 

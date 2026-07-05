@@ -19,10 +19,10 @@ class JmesPath
     public string $query;
 }
 
-/** Match filter for JmesPath#create (any subset of JmesPath fields). */
+/** Request payload for JmesPath#create. */
 class JmesPathCreateData
 {
-    public mixed $data = null;
-    public ?string $query = null;
+    public mixed $data;
+    public string $query;
 }
 

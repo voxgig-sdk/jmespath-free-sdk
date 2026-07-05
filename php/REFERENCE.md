@@ -8,7 +8,7 @@ Complete API reference for the JmespathFree PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/jmespath-free_sdk.php';
+require_once __DIR__ . '/jmespathfree_sdk.php';
 
 $client = new JmespathFreeSDK($options);
 ```
@@ -45,11 +45,11 @@ $client = JmespathFreeSDK::test();
 
 Create a new `JmesPathEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): JmespathFreeUtility`
 
 Return a copy of the SDK utility object.
 
@@ -92,8 +92,8 @@ $jmes_path = $client->JmesPath();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ANY`` | Yes |  |
-| `query` | ``$STRING`` | Yes |  |
+| `data` | `mixed` | Yes |  |
+| `query` | `string` | Yes |  |
 
 ### Operations
 
@@ -103,26 +103,26 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->JmesPath()->create([
-  "data" => /* `$ANY` */,
-  "query" => /* `$STRING` */,
+  "data" => null, // mixed
+  "query" => null, // string
 ]);
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -131,7 +131,7 @@ Set the entity match criteria.
 Create a new `JmesPathEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

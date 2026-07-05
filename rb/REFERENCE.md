@@ -8,7 +8,7 @@ Complete API reference for the JmespathFree Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'jmespath-free_sdk'
+require_relative 'JmespathFree_sdk'
 
 client = JmespathFreeSDK.new(options)
 ```
@@ -93,8 +93,8 @@ jmes_path = client.JmesPath
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ANY`` | Yes |  |
-| `query` | ``$STRING`` | Yes |  |
+| `data` | `Object` | Yes |  |
+| `query` | `String` | Yes |  |
 
 ### Operations
 
@@ -104,8 +104,8 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.JmesPath.create({
-  "data" => # `$ANY`,
-  "query" => # `$STRING`,
+  "data" => "example", # Object
+  "query" => "example", # String
 })
 ```
 

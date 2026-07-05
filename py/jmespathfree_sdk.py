@@ -221,7 +221,7 @@ class JmespathFreeSDK:
 
 
     def JmesPath(self, data=None) -> "JmesPathEntity":
-        """Entity factory: client.JmesPath().list({}) / client.JmesPath().load({"id": ...})."""
+        """Entity factory: client.JmesPath().list() / client.JmesPath().load({"id": ...})."""
         from entity.jmes_path_entity import JmesPathEntity
         return JmesPathEntity(self, data)
 

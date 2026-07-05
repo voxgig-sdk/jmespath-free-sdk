@@ -14,11 +14,10 @@ type JmesPath struct {
 	Query string `json:"query"`
 }
 
-// JmesPathCreateData mirrors the jmes_path fields as an all-optional match
-// filter (Go analog of Partial<JmesPath>).
+// JmesPathCreateData is the typed request payload for JmesPath.CreateTyped.
 type JmesPathCreateData struct {
-	Data *any `json:"data,omitempty"`
-	Query *string `json:"query,omitempty"`
+	Data any `json:"data"`
+	Query string `json:"query"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

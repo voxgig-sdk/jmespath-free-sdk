@@ -8,7 +8,7 @@ Complete API reference for the JmespathFree Python SDK.
 ### Constructor
 
 ```python
-from jmespath-free_sdk import JmespathFreeSDK
+from jmespathfree_sdk import JmespathFreeSDK
 
 client = JmespathFreeSDK(options)
 ```
@@ -87,8 +87,8 @@ jmes_path = client.JmesPath()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ANY`` | Yes |  |
-| `query` | ``$STRING`` | Yes |  |
+| `data` | `Any` | Yes |  |
+| `query` | `str` | Yes |  |
 
 ### Operations
 
@@ -98,8 +98,8 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.JmesPath().create({
-    "data": ...,  # `$ANY`
-    "query": ...,  # `$STRING`
+    "data": "example",  # Any
+    "query": "example",  # str
 })
 ```
 
