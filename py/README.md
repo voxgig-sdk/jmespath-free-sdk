@@ -40,7 +40,7 @@ client = JmespathFreeSDK()
 
 ```python
 # Create — returns the bare created record (a dict)
-created = client.JmesPath().create({"data": "example", "query": "example"})
+created = client.JmesPath().create({"data": "example_data", "query": "example_query"})
 
 ```
 
@@ -269,8 +269,8 @@ Create an instance: `jmes_path = client.JmesPath()`
 
 ```python
 jmes_path = client.JmesPath().create({
-    "data": "example",  # Any
-    "query": "example",  # str
+    "data": "example_data",  # Any
+    "query": "example_query",  # str
 })
 ```
 

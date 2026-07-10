@@ -15,10 +15,10 @@ main: {
           url: "https://noteapiconnector-tools.vercel.app/api"
         }
       ]
+      summary: "The JMESPath free API provides a serverless endpoint for running JSON transformations using the JMESPath query language."
       termsOfService: "https://noteapiconnector.com/terms-of-service"
       title: "JMESPath Free API"
       version: "1.0.0"
+      website: "https://noteapiconnector.com/jmespath-free-api"
     }
   }
-}
-

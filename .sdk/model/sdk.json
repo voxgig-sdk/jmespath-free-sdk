@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -191,15 +188,18 @@
           "url": "https://noteapiconnector.com/jmespath-free-api"
         },
         "description": "The JMESPath free API provides a serverless endpoint for running JSON transformations using the JMESPath query language. It enables users to quickly filter, reshape, and extract data from JSON without the need for deploying any infrastructure. This API is ideal for prototyping and low-volume automation tasks.",
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production serverless endpoint",
             "url": "https://noteapiconnector-tools.vercel.app/api"
           }
         ],
+        "summary": "The JMESPath free API provides a serverless endpoint for running JSON transformations using the JMESPath query language.",
         "termsOfService": "https://noteapiconnector.com/terms-of-service",
         "title": "JMESPath Free API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://noteapiconnector.com/jmespath-free-api"
       },
       "option": {},
       "target": {
@@ -252,6 +252,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -302,6 +305,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

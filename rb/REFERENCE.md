@@ -104,8 +104,8 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.JmesPath.create({
-  "data" => "example", # Object
-  "query" => "example", # String
+  "data" => "example_data", # Object
+  "query" => "example_query", # String
 })
 ```
 

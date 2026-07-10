@@ -98,8 +98,8 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.JmesPath().create({
-    "data": "example",  # Any
-    "query": "example",  # str
+    "data": "example_data",  # Any
+    "query": "example_query",  # str
 })
 ```
 

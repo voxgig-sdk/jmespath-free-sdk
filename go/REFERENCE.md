@@ -90,7 +90,8 @@ same parameters as `Direct()`.
 ## JmesPathEntity
 
 ```go
-jmes_path := client.JmesPath(nil)
+jmesPath := client.JmesPath(nil)
+fmt.Println(jmesPath.GetName()) // "jmes_path"
 ```
 
 ### Fields
@@ -108,9 +109,13 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.JmesPath(nil).Create(map[string]any{
-    "data": /* any */,
-    "query": /* string */,
+    "data": "example_data",
+    "query": "example_query",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

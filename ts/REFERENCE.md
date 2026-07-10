@@ -127,8 +127,8 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.JmesPath().create({
-  data: /* any */,
-  query: /* string */,
+  data: 'example_data',
+  query: 'example_query',
 })
 ```
 

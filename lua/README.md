@@ -37,7 +37,7 @@ local client = sdk.new()
 
 ```lua
 -- Create
-local created, err = client:JmesPath():create({ data = "example", query = "example" })
+local created, err = client:JmesPath():create({ data = "example_data", query = "example_query" })
 if err then error(err) end
 
 ```
@@ -259,8 +259,8 @@ Create an instance: `local jmes_path = client:JmesPath(nil)`
 
 ```lua
 local jmes_path, err = client:JmesPath():create({
-  data = nil, -- any
-  query = nil, -- string
+  data = "example_data", -- any
+  query = "example_query", -- string
 })
 ```
 

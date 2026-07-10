@@ -34,7 +34,7 @@ client = JmespathFreeSDK.new
 
 ```ruby
 # create returns the bare created JmesPath record.
-created = client.JmesPath.create({ "data" => "example", "query" => "example" })
+created = client.JmesPath.create({ "data" => "example_data", "query" => "example_query" })
 
 ```
 
@@ -263,8 +263,8 @@ Create an instance: `jmes_path = client.JmesPath`
 
 ```ruby
 jmes_path = client.JmesPath.create({
-  "data" => "example", # Object
-  "query" => "example", # String
+  "data" => "example_data", # Object
+  "query" => "example_query", # String
 })
 ```
 

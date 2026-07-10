@@ -315,8 +315,8 @@ Create an instance: `const jmes_path = client.JmesPath()`
 
 ```ts
 const jmes_path = await client.JmesPath().create({
-  data: /* any */,
-  query: /* string */,
+  data: 'example_data',
+  query: 'example_query',
 })
 ```
 

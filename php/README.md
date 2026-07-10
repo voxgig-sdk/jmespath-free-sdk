@@ -35,7 +35,7 @@ $client = new JmespathFreeSDK();
 
 ```php
 // create() returns the bare created JmesPath record.
-$created = $client->JmesPath()->create(["data" => "example", "query" => "example"]);
+$created = $client->JmesPath()->create(["data" => "example_data", "query" => "example_query"]);
 
 ```
 

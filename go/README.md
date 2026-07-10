@@ -50,8 +50,8 @@ import (
 func main() {
     client := sdk.New()
 
-    // Create a jmespath.
-    created, err := client.JmesPath(nil).Create(map[string]any{"data": "example", "query": "example"}, nil)
+    // Create a jmesPath.
+    created, err := client.JmesPath(nil).Create(map[string]any{"data": "example_data", "query": "example_query"}, nil)
     if err != nil {
         panic(err)
     }
@@ -135,13 +135,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-jmespath, err := client.JmesPath(nil).Create(
+jmesPath, err := client.JmesPath(nil).Create(
     map[string]any{"data": "example", "query": "example"}, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(jmespath) // the returned mock data
+fmt.Println(jmesPath) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -245,9 +245,9 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    jmespath, err := client.JmesPath(nil).Create(map[string]any{/* fields */}, nil)
+    jmesPath, err := client.JmesPath(nil).Create(map[string]any{/* fields */}, nil)
     if err != nil { /* handle */ }
-    // jmespath is the returned record
+    // jmesPath is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -272,7 +272,7 @@ API path: `/jmespath`
 
 ### JmesPath
 
-Create an instance: `jmes_path := client.JmesPath(nil)`
+Create an instance: `jmesPath := client.JmesPath(nil)`
 
 #### Operations
 
@@ -291,9 +291,13 @@ Create an instance: `jmes_path := client.JmesPath(nil)`
 
 ```go
 result, err := client.JmesPath(nil).Create(map[string]any{
-    "data": /* any */,
-    "query": /* string */,
+    "data": "example_data",
+    "query": "example_query",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 
