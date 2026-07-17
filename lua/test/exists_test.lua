@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- JmespathFree SDK exists test
 
 local sdk = require("jmespath-free_sdk")
 
