@@ -33,7 +33,7 @@ client = JmespathFreeSDK.new
 ### 4. Create, update, and remove
 
 ```ruby
-# create returns the bare created JmesPath record.
+# create returns the ENTITY — call data_get for the created JmesPath record.
 created = client.JmesPath.create({ "data" => "example_data", "query" => "example_query" })
 
 ```
@@ -113,7 +113,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = JmespathFreeSDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 jmespath = client.JmesPath.create({ "data" => "example", "query" => "example" })
 puts jmespath
 ```

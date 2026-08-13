@@ -44,7 +44,7 @@ func TestJmesPathEntity(t *testing.T) {
 		// The basic flow consumes synthetic IDs from the fixture. In live mode
 		// without an *_ENTID env override, those IDs hit the live API and 4xx.
 		if setup.syntheticOnly {
-			t.Skip("live entity test uses synthetic IDs from fixture — set JMESPATHFREE_TEST_JMES_PATH_ENTID JSON to run live")
+			t.Skip("live entity test uses synthetic IDs from fixture — set JMESPATH_FREE_TEST_JMES_PATH_ENTID JSON to run live")
 			return
 		}
 		client := setup.client
@@ -58,7 +58,7 @@ func TestJmesPathEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("create failed: %v", err)
 		}
-		jmesPathRef01Data = core.ToMapAny(jmesPathRef01DataResult)
+		jmesPathRef01Data = core.ToMapAny(entityData(jmesPathRef01DataResult))
 		if jmesPathRef01Data == nil {
 			t.Fatal("expected create result to be a map")
 		}
@@ -103,21 +103,21 @@ func jmes_pathBasicSetup(extra map[string]any) *entityTestSetup {
 	// Detect ENTID env override before envOverride consumes it. When live
 	// mode is on without a real override, the basic test runs against synthetic
 	// IDs from the fixture and 4xx's. Surface this so the test can skip.
-	entidEnvRaw := os.Getenv("JMESPATHFREE_TEST_JMES_PATH_ENTID")
+	entidEnvRaw := os.Getenv("JMESPATH_FREE_TEST_JMES_PATH_ENTID")
 	idmapOverridden := entidEnvRaw != "" && strings.HasPrefix(strings.TrimSpace(entidEnvRaw), "{")
 
 	env := envOverride(map[string]any{
-		"JMESPATHFREE_TEST_JMES_PATH_ENTID": idmap,
-		"JMESPATHFREE_TEST_LIVE":      "FALSE",
-		"JMESPATHFREE_TEST_EXPLAIN":   "FALSE",
+		"JMESPATH_FREE_TEST_JMES_PATH_ENTID": idmap,
+		"JMESPATH_FREE_TEST_LIVE":      "FALSE",
+		"JMESPATH_FREE_TEST_EXPLAIN":   "FALSE",
 	})
 
-	idmapResolved := core.ToMapAny(env["JMESPATHFREE_TEST_JMES_PATH_ENTID"])
+	idmapResolved := core.ToMapAny(env["JMESPATH_FREE_TEST_JMES_PATH_ENTID"])
 	if idmapResolved == nil {
 		idmapResolved = core.ToMapAny(idmap)
 	}
 
-	if env["JMESPATHFREE_TEST_LIVE"] == "TRUE" {
+	if env["JMESPATH_FREE_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
 			},
@@ -126,13 +126,13 @@ func jmes_pathBasicSetup(extra map[string]any) *entityTestSetup {
 		client = sdk.NewJmespathFreeSDK(core.ToMapAny(mergedOpts))
 	}
 
-	live := env["JMESPATHFREE_TEST_LIVE"] == "TRUE"
+	live := env["JMESPATH_FREE_TEST_LIVE"] == "TRUE"
 	return &entityTestSetup{
 		client:        client,
 		data:          entityData,
 		idmap:         idmapResolved,
 		env:           env,
-		explain:       env["JMESPATHFREE_TEST_EXPLAIN"] == "TRUE",
+		explain:       env["JMESPATH_FREE_TEST_EXPLAIN"] == "TRUE",
 		live:          live,
 		syntheticOnly: live && !idmapOverridden,
 		now:           time.Now().UnixMilli(),

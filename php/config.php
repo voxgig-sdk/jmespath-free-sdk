@@ -54,6 +54,7 @@ class JmespathFreeConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/jmespath',
                   'parts' => [

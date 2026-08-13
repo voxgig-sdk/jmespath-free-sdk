@@ -23,8 +23,8 @@ module JmespathFreeTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("JMESPATHFREE_TEST_LIVE")
-    override = getenv("JMESPATHFREE_TEST_OVERRIDE")
+    live = getenv("JMESPATH_FREE_TEST_LIVE")
+    override = getenv("JMESPATH_FREE_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module JmespathFreeTestRunner
       end
     end
 
-    explain = getenv("JMESPATHFREE_TEST_EXPLAIN")
-    m["JMESPATHFREE_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("JMESPATH_FREE_TEST_EXPLAIN")
+    m["JMESPATH_FREE_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

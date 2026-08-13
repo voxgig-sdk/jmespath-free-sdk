@@ -36,7 +36,7 @@ const client = new JmespathFreeSDK()
 ### 4. Create, update, and remove
 
 ```ts
-// Create — returns the created JmesPath
+// Create — returns the created JmesPath ENTITY (.data() for the record)
 const created = await client.JmesPath().create({
   data: 'example_data',
   query: 'example_query',
@@ -119,7 +119,8 @@ Create a mock client for unit testing — no server required:
 const client = JmespathFreeSDK.test()
 
 const jmespath = await client.JmesPath().create({ data: 'example_data', query: 'example_query' })
-// jmespath is a bare entity populated with mock response data
+// jmespath is the entity, populated with mock response data
+// — call jmespath.data() for the record itself
 console.log(jmespath)
 ```
 

@@ -41,9 +41,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = JmespathFreeSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = JmespathFreeSDK.test({
+  entity: {
+    jmes_path: {
+      test01: { id: 'test01', data: 'example_data', query: 'example_query' },
+    },
+  },
+})
 const jmespath = await client.JmesPath().create({ data: 'example_data', query: 'example_query' })
-// jmespath is a bare JmesPath populated with mock data
+// jmespath is the JmesPath entity, populated with mock data
+// — call jmespath.data() for the record itself
 console.log(jmespath)
 ```
 
@@ -322,6 +331,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://noteapiconnector.com/jmespath-free-api](https://noteapiconnector.com/jmespath-free-api)
 

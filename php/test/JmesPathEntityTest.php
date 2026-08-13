@@ -33,7 +33,7 @@ class JmesPathEntityTest extends TestCase
         // The basic flow consumes synthetic IDs from the fixture. In live mode
         // without an *_ENTID env override, those IDs hit the live API and 4xx.
         if (!empty($setup["synthetic_only"])) {
-            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set JMESPATHFREE_TEST_JMES_PATH_ENTID JSON to run live");
+            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set JMESPATH_FREE_TEST_JMES_PATH_ENTID JSON to run live");
             return;
         }
         $client = $setup["client"];
@@ -44,7 +44,7 @@ class JmesPathEntityTest extends TestCase
             Vs::getpath($setup["data"], "new.jmes_path"), "jmes_path_ref01"));
 
         $jmes_path_ref01_data_result = $jmes_path_ref01_ent->create($jmes_path_ref01_data, null);
-        $jmes_path_ref01_data = Helpers::to_map($jmes_path_ref01_data_result);
+        $jmes_path_ref01_data = Helpers::to_map(is_object($jmes_path_ref01_data_result) && method_exists($jmes_path_ref01_data_result, 'data_get') ? $jmes_path_ref01_data_result->data_get() : $jmes_path_ref01_data_result);
         $this->assertNotNull($jmes_path_ref01_data);
 
     }
@@ -72,22 +72,22 @@ function jmes_path_basic_setup($extra)
     // Detect ENTID env override before envOverride consumes it. When live
     // mode is on without a real override, the basic test runs against synthetic
     // IDs from the fixture and 4xx's. Surface this so the test can skip.
-    $entid_env_raw = getenv("JMESPATHFREE_TEST_JMES_PATH_ENTID");
+    $entid_env_raw = getenv("JMESPATH_FREE_TEST_JMES_PATH_ENTID");
     $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
 
     $env = Runner::env_override([
-        "JMESPATHFREE_TEST_JMES_PATH_ENTID" => $idmap,
-        "JMESPATHFREE_TEST_LIVE" => "FALSE",
-        "JMESPATHFREE_TEST_EXPLAIN" => "FALSE",
+        "JMESPATH_FREE_TEST_JMES_PATH_ENTID" => $idmap,
+        "JMESPATH_FREE_TEST_LIVE" => "FALSE",
+        "JMESPATH_FREE_TEST_EXPLAIN" => "FALSE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
-        $env["JMESPATHFREE_TEST_JMES_PATH_ENTID"]);
+        $env["JMESPATH_FREE_TEST_JMES_PATH_ENTID"]);
     if ($idmap_resolved === null) {
         $idmap_resolved = Helpers::to_map($idmap);
     }
 
-    if ($env["JMESPATHFREE_TEST_LIVE"] === "TRUE") {
+    if ($env["JMESPATH_FREE_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
             ],
@@ -96,13 +96,13 @@ function jmes_path_basic_setup($extra)
         $client = new JmespathFreeSDK(Helpers::to_map($merged_opts));
     }
 
-    $live = $env["JMESPATHFREE_TEST_LIVE"] === "TRUE";
+    $live = $env["JMESPATH_FREE_TEST_LIVE"] === "TRUE";
     return [
         "client" => $client,
         "data" => $entity_data,
         "idmap" => $idmap_resolved,
         "env" => $env,
-        "explain" => $env["JMESPATHFREE_TEST_EXPLAIN"] === "TRUE",
+        "explain" => $env["JMESPATH_FREE_TEST_EXPLAIN"] === "TRUE",
         "live" => $live,
         "synthetic_only" => $live && !$idmap_overridden,
         "now" => (int)(microtime(true) * 1000),

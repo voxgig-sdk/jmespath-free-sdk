@@ -34,7 +34,7 @@ $client = new JmespathFreeSDK();
 ### 4. Create, update, and remove
 
 ```php
-// create() returns the bare created JmesPath record.
+// create() returns the ENTITY — call data_get() for the created JmesPath record.
 $created = $client->JmesPath()->create(["data" => "example_data", "query" => "example_query"]);
 
 ```
@@ -119,7 +119,8 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = JmespathFreeSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $jmespath = $client->JmesPath()->create(["data" => "example", "query" => "example"]);
 print_r($jmespath);
 ```
@@ -218,7 +219,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 

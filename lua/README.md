@@ -213,9 +213,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local jmes_path, err = client:JmesPath():load()
+    local jmes_path, err = client:JmesPath():list()
     if err then error(err) end
-    -- jmes_path is the loaded record
+    -- jmes_path is the record list
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.

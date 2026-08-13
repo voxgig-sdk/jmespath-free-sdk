@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ JmespathFreeUtility.registrar = ->(u) {
   u.prepare_params = JmespathFreeUtilities::PrepareParams
   u.prepare_path = JmespathFreeUtilities::PreparePath
   u.prepare_query = JmespathFreeUtilities::PrepareQuery
+  u.graphql_body = JmespathFreeUtilities::GraphqlBody
+  u.graphql_errors = JmespathFreeUtilities::GraphqlErrors
   u.result_basic = JmespathFreeUtilities::ResultBasic
   u.result_body = JmespathFreeUtilities::ResultBody
   u.result_headers = JmespathFreeUtilities::ResultHeaders

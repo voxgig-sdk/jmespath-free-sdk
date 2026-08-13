@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# JmespathFree SDK exists test
 
 import pytest
 from jmespathfree_sdk import JmespathFreeSDK

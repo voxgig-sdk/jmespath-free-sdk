@@ -26,7 +26,7 @@ class JmesPathEntityTest < Minitest::Test
     # The basic flow consumes synthetic IDs from the fixture. In live mode
     # without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup[:synthetic_only]
-      skip "live entity test uses synthetic IDs from fixture — set JMESPATHFREE_TEST_JMES_PATH_ENTID JSON to run live"
+      skip "live entity test uses synthetic IDs from fixture — set JMESPATH_FREE_TEST_JMES_PATH_ENTID JSON to run live"
       return
     end
     client = setup[:client]
@@ -37,7 +37,7 @@ class JmesPathEntityTest < Minitest::Test
       Vs.getpath(setup[:data], "new.jmes_path"), "jmes_path_ref01"))
 
     jmes_path_ref01_data_result = jmes_path_ref01_ent.create(jmes_path_ref01_data, nil)
-    jmes_path_ref01_data = Helpers.to_map(jmes_path_ref01_data_result)
+    jmes_path_ref01_data = Helpers.to_map(jmes_path_ref01_data_result.respond_to?(:data_get) ? jmes_path_ref01_data_result.data_get : jmes_path_ref01_data_result)
     assert !jmes_path_ref01_data.nil?
 
   end
@@ -69,22 +69,22 @@ def jmes_path_basic_setup(extra)
   # Detect ENTID env override before envOverride consumes it. When live
   # mode is on without a real override, the basic test runs against synthetic
   # IDs from the fixture and 4xx's. Surface this so the test can skip.
-  entid_env_raw = ENV["JMESPATHFREE_TEST_JMES_PATH_ENTID"]
+  entid_env_raw = ENV["JMESPATH_FREE_TEST_JMES_PATH_ENTID"]
   idmap_overridden = !entid_env_raw.nil? && entid_env_raw.strip.start_with?("{")
 
   env = Runner.env_override({
-    "JMESPATHFREE_TEST_JMES_PATH_ENTID" => idmap,
-    "JMESPATHFREE_TEST_LIVE" => "FALSE",
-    "JMESPATHFREE_TEST_EXPLAIN" => "FALSE",
+    "JMESPATH_FREE_TEST_JMES_PATH_ENTID" => idmap,
+    "JMESPATH_FREE_TEST_LIVE" => "FALSE",
+    "JMESPATH_FREE_TEST_EXPLAIN" => "FALSE",
   })
 
   idmap_resolved = Helpers.to_map(
-    env["JMESPATHFREE_TEST_JMES_PATH_ENTID"])
+    env["JMESPATH_FREE_TEST_JMES_PATH_ENTID"])
   if idmap_resolved.nil?
     idmap_resolved = Helpers.to_map(idmap)
   end
 
-  if env["JMESPATHFREE_TEST_LIVE"] == "TRUE"
+  if env["JMESPATH_FREE_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
       },
@@ -93,13 +93,13 @@ def jmes_path_basic_setup(extra)
     client = JmespathFreeSDK.new(Helpers.to_map(merged_opts))
   end
 
-  live = env["JMESPATHFREE_TEST_LIVE"] == "TRUE"
+  live = env["JMESPATH_FREE_TEST_LIVE"] == "TRUE"
   {
     client: client,
     data: entity_data,
     idmap: idmap_resolved,
     env: env,
-    explain: env["JMESPATHFREE_TEST_EXPLAIN"] == "TRUE",
+    explain: env["JMESPATH_FREE_TEST_EXPLAIN"] == "TRUE",
     live: live,
     synthetic_only: live && !idmap_overridden,
     now: (Time.now.to_f * 1000).to_i,

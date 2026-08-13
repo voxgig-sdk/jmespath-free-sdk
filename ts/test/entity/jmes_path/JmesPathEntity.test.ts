@@ -26,8 +26,8 @@ import {
 describe('JmesPathEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when JMESPATHFREE_TEST_LIVE=TRUE.
-  afterEach(liveDelay('JMESPATHFREE_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when JMESPATH_FREE_TEST_LIVE=TRUE.
+  afterEach(liveDelay('JMESPATH_FREE_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = JmespathFreeSDK.test()
@@ -62,7 +62,7 @@ describe('JmesPathEntity', async () => {
     const jmes_path_ref01_ent = client.JmesPath()
     let jmes_path_ref01_data = setup.data.new.jmes_path['jmes_path_ref01']
 
-    jmes_path_ref01_data = await jmes_path_ref01_ent.create(jmes_path_ref01_data)
+    jmes_path_ref01_data = (await jmes_path_ref01_ent.create(jmes_path_ref01_data)).data()
     assert(null != jmes_path_ref01_data)
 
 

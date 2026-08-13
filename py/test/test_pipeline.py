@@ -16,11 +16,11 @@
 import pytest
 
 from jmespathfree_sdk import JmespathFreeSDK
-from core.error import JmespathFreeError
-from core.result import JmespathFreeResult
-from core.response import JmespathFreeResponse
-from core.spec import JmespathFreeSpec
-from feature.base_feature import JmespathFreeBaseFeature
+from jmespathfree_sdk.core.error import JmespathFreeError
+from jmespathfree_sdk.core.result import JmespathFreeResult
+from jmespathfree_sdk.core.response import JmespathFreeResponse
+from jmespathfree_sdk.core.spec import JmespathFreeSpec
+from jmespathfree_sdk.feature.base_feature import JmespathFreeBaseFeature
 
 
 def _client():

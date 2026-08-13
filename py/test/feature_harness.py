@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import JmespathFreeControl
-from core.error import JmespathFreeError
-from core.result import JmespathFreeResult
-from core.spec import JmespathFreeSpec
+from jmespathfree_sdk.config import make_config
+from jmespathfree_sdk.features import _make_feature
+from jmespathfree_sdk.core.control import JmespathFreeControl
+from jmespathfree_sdk.core.error import JmespathFreeError
+from jmespathfree_sdk.core.result import JmespathFreeResult
+from jmespathfree_sdk.core.spec import JmespathFreeSpec
 
 
 # True when this SDK was generated with the named feature.
