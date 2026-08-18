@@ -28,7 +28,7 @@ class JmespathFreeSDK
     utility = JmespathFreeUtility.new
     @_utility = utility
 
-    config = JmespathFreeConfig.make_config
+    config = JmespathFreeConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

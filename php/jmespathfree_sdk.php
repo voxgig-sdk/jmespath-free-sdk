@@ -40,7 +40,7 @@ class JmespathFreeSDK
         $utility = new JmespathFreeUtility();
         $this->_utility = $utility;
 
-        $config = JmespathFreeConfig::make_config();
+        $config = JmespathFreeConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,
