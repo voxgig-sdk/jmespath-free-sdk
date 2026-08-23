@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "JmespathFree",
+            "slug": "jmespath-free",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -51,6 +54,7 @@ def make_config():
           {
             "name": "data",
             "req": True,
+            "short": "The JSON object or array to transform",
             "type": "`$ANY`",
             "union": {
               "branches": 2,
@@ -61,6 +65,7 @@ def make_config():
           {
             "name": "query",
             "req": True,
+            "short": "The JMESPath expression string to evaluate against the data",
             "type": "`$STRING`",
           },
         ],

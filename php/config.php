@@ -33,6 +33,9 @@ class JmespathFreeConfig
         return [
             "main" => [
                 "name" => "JmespathFree",
+                "slug" => "jmespath-free",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
@@ -56,6 +59,7 @@ class JmespathFreeConfig
             [
               'name' => 'data',
               'req' => true,
+              'short' => 'The JSON object or array to transform',
               'type' => '`$ANY`',
               'union' => [
                 'branches' => 2,
@@ -66,6 +70,7 @@ class JmespathFreeConfig
             [
               'name' => 'query',
               'req' => true,
+              'short' => 'The JMESPath expression string to evaluate against the data',
               'type' => '`$STRING`',
             ],
           ],

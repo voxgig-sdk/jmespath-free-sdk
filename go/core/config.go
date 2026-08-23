@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "JmespathFree",
+			"slug": "jmespath-free",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -34,6 +37,7 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "data",
 						"req": true,
+						"short": "The JSON object or array to transform",
 						"type": "`$ANY`",
 						"union": map[string]any{
 							"branches": 2,
@@ -44,6 +48,7 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "query",
 						"req": true,
+						"short": "The JMESPath expression string to evaluate against the data",
 						"type": "`$STRING`",
 					},
 				},

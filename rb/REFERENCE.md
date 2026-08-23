@@ -93,8 +93,8 @@ jmes_path = client.JmesPath
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Object` | Yes |  |
-| `query` | `String` | Yes |  |
+| `data` | `Object` | Yes | The JSON object or array to transform |
+| `query` | `String` | Yes | The JMESPath expression string to evaluate against the data |
 
 ### Operations
 

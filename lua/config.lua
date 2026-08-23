@@ -7,6 +7,9 @@ local function make_config()
   return {
     main = {
       name = "JmespathFree",
+      slug = "jmespath-free",
+      version = "0.0.1",
+      target = "lua",
     },
     feature = {
       ["test"] = {
@@ -30,6 +33,7 @@ local function make_config()
           {
             ["name"] = "data",
             ["req"] = true,
+            ["short"] = "The JSON object or array to transform",
             ["type"] = "`$ANY`",
             ["union"] = {
               ["branches"] = 2,
@@ -40,6 +44,7 @@ local function make_config()
           {
             ["name"] = "query",
             ["req"] = true,
+            ["short"] = "The JMESPath expression string to evaluate against the data",
             ["type"] = "`$STRING`",
           },
         },

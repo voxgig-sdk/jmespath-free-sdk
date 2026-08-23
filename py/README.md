@@ -237,8 +237,8 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `query` |  |
+| `data` | The JSON object or array to transform |
+| `query` | The JMESPath expression string to evaluate against the data |
 
 Operations: Create.
 
@@ -263,8 +263,8 @@ Create an instance: `jmes_path = client.JmesPath()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Any` |  |
-| `query` | `str` |  |
+| `data` | `Any` | The JSON object or array to transform |
+| `query` | `str` | The JMESPath expression string to evaluate against the data |
 
 #### Example: Create
 

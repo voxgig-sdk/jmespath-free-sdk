@@ -226,8 +226,8 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `query` |  |
+| `data` | The JSON object or array to transform |
+| `query` | The JMESPath expression string to evaluate against the data |
 
 Operations: Create.
 
@@ -252,8 +252,8 @@ Create an instance: `local jmes_path = client:JmesPath(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `any` |  |
-| `query` | `string` |  |
+| `data` | `any` | The JSON object or array to transform |
+| `query` | `string` | The JMESPath expression string to evaluate against the data |
 
 #### Example: Create
 

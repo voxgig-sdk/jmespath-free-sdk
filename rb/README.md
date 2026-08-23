@@ -231,8 +231,8 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `query` |  |
+| `data` | The JSON object or array to transform |
+| `query` | The JMESPath expression string to evaluate against the data |
 
 Operations: Create.
 
@@ -257,8 +257,8 @@ Create an instance: `jmes_path = client.JmesPath`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Object` |  |
-| `query` | `String` |  |
+| `data` | `Object` | The JSON object or array to transform |
+| `query` | `String` | The JMESPath expression string to evaluate against the data |
 
 #### Example: Create
 

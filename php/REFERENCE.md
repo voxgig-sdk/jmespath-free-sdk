@@ -92,8 +92,8 @@ $jmes_path = $client->JmesPath();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `mixed` | Yes |  |
-| `query` | `string` | Yes |  |
+| `data` | `mixed` | Yes | The JSON object or array to transform |
+| `query` | `string` | Yes | The JMESPath expression string to evaluate against the data |
 
 ### Operations
 

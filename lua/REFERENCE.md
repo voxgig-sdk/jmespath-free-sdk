@@ -90,8 +90,8 @@ local jmes_path = client:JmesPath(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `any` | Yes |  |
-| `query` | `string` | Yes |  |
+| `data` | `any` | Yes | The JSON object or array to transform |
+| `query` | `string` | Yes | The JMESPath expression string to evaluate against the data |
 
 ### Operations
 

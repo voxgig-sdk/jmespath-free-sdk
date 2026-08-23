@@ -19,6 +19,9 @@ module JmespathFreeConfig
     {
       "main" => {
         "name" => "JmespathFree",
+        "slug" => "jmespath-free",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -42,6 +45,7 @@ module JmespathFreeConfig
             {
               "name" => "data",
               "req" => true,
+              "short" => "The JSON object or array to transform",
               "type" => "`$ANY`",
               "union" => {
                 "branches" => 2,
@@ -52,6 +56,7 @@ module JmespathFreeConfig
             {
               "name" => "query",
               "req" => true,
+              "short" => "The JMESPath expression string to evaluate against the data",
               "type" => "`$STRING`",
             },
           ],

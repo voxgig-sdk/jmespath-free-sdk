@@ -8,6 +8,7 @@ main: kit: entity: jmes_path: {
     {
       name: "data"
       req: true
+      short: "The JSON object or array to transform"
       type: "`$ANY`"
       union: {
         branches: 2
@@ -18,6 +19,7 @@ main: kit: entity: jmes_path: {
     {
       name: "query"
       req: true
+      short: "The JMESPath expression string to evaluate against the data"
       type: "`$STRING`"
     }
   ]
