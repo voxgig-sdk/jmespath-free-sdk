@@ -42,6 +42,7 @@ class JmespathFreeConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
