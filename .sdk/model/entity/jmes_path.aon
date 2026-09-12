@@ -32,8 +32,10 @@ main: kit: entity: jmes_path: {
         {
           method: "POST"
           orig: "/jmespath"
-          parts: [
-            "jmespath"
+          segments: [
+            {
+              lit: "jmespath"
+            }
           ]
           transform: {
             req: "`reqdata`"

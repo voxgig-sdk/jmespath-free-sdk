@@ -52,7 +52,7 @@ func TestJmesPathEntity(t *testing.T) {
 		// CREATE
 		jmesPathRef01Ent := client.JmesPath(nil)
 		jmesPathRef01Data := core.ToMapAny(vs.GetProp(
-			vs.GetPath([]any{"new", "jmes_path"}, setup.data), "jmes_path_ref01"))
+			vs.GetPath(setup.data, []any{"new", "jmes_path"}), "jmes_path_ref01"))
 
 		jmesPathRef01DataResult, err := jmesPathRef01Ent.Create(jmesPathRef01Data, nil)
 		if err != nil {
@@ -90,7 +90,7 @@ func jmes_pathBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"jmes_path01", "jmes_path02", "jmes_path03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -118,10 +118,22 @@ func jmes_pathBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["JMESPATH_FREE_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewJmespathFreeSDK(core.ToMapAny(mergedOpts))
 	}

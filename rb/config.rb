@@ -72,14 +72,19 @@ module JmespathFreeConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/jmespath",
-                  "parts" => [
-                    "jmespath",
+                  "segments" => [
+                    {
+                      "lit" => "jmespath",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "jmespath",
+                  ],
                 },
               ],
             },
