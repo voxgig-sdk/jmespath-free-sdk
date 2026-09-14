@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { JmespathFreeSDK } from '@voxgig-sdk/jmespath-free'
+import { JmespathFreeSDK } from '@voxgig-sdk/jmespath-free-sdk'
 
 const client = new JmespathFreeSDK()
 ```
@@ -404,7 +404,7 @@ jmespath-free/
 Import the SDK from the package root:
 
 ```ts
-import { JmespathFreeSDK } from '@voxgig-sdk/jmespath-free'
+import { JmespathFreeSDK } from '@voxgig-sdk/jmespath-free-sdk'
 ```
 
 ### Entity state

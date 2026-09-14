@@ -108,7 +108,7 @@ local result, err = client:JmesPath():create({ data = "example", query = "exampl
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/jmespath-free` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jmespath-free-sdk/releases) |
+| TypeScript | `@voxgig-sdk/jmespath-free-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jmespath-free-sdk/releases) |
 | Python | `voxgig-sdk-jmespath-free` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jmespath-free-sdk/releases) |
 | PHP | `voxgig-sdk/jmespath-free` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jmespath-free-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/jmespath-free-sdk/go` | `go get github.com/voxgig-sdk/jmespath-free-sdk/go@latest` |
@@ -122,7 +122,7 @@ local result, err = client:JmesPath():create({ data = "example", query = "exampl
 ### TypeScript
 
 ```ts
-import { JmespathFreeSDK } from '@voxgig-sdk/jmespath-free'
+import { JmespathFreeSDK } from '@voxgig-sdk/jmespath-free-sdk'
 
 const client = new JmespathFreeSDK()
 
