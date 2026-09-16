@@ -1,12 +1,18 @@
 # JmespathFree SDK feature factory
 
 from jmespathfree_sdk.feature.base_feature import JmespathFreeBaseFeature
+from jmespathfree_sdk.feature.ratelimit_feature import JmespathFreeRatelimitFeature
+from jmespathfree_sdk.feature.retry_feature import JmespathFreeRetryFeature
 from jmespathfree_sdk.feature.test_feature import JmespathFreeTestFeature
+from jmespathfree_sdk.feature.timeout_feature import JmespathFreeTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: JmespathFreeBaseFeature(),
+    "ratelimit": lambda: JmespathFreeRatelimitFeature(),
+    "retry": lambda: JmespathFreeRetryFeature(),
     "test": lambda: JmespathFreeTestFeature(),
+    "timeout": lambda: JmespathFreeTimeoutFeature(),
 }
 
 
