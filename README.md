@@ -108,12 +108,12 @@ local result, err = client:JmesPath():create({ data = "example", query = "exampl
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/jmespath-free-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jmespath-free-sdk/releases) |
-| Python | `voxgig-sdk-jmespath-free` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jmespath-free-sdk/releases) |
-| PHP | `voxgig-sdk/jmespath-free` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jmespath-free-sdk/releases) |
+| TypeScript | `@voxgig-sdk/jmespath-free-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jmespath-free-sdk/tags) |
+| Python | `voxgig-sdk-jmespath-free` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jmespath-free-sdk/tags) |
+| PHP | `voxgig-sdk/jmespath-free` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jmespath-free-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/jmespath-free-sdk/go` | `go get github.com/voxgig-sdk/jmespath-free-sdk/go@latest` |
-| Ruby | `voxgig-sdk-jmespath-free` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jmespath-free-sdk/releases) |
-| Lua | `voxgig-sdk-jmespath-free` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jmespath-free-sdk/releases) |
+| Ruby | `voxgig-sdk-jmespath-free` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jmespath-free-sdk/tags) |
+| Lua | `voxgig-sdk-jmespath-free` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jmespath-free-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/jmespath-free-sdk/go-cli` | `go install github.com/voxgig-sdk/jmespath-free-sdk/go-cli/cmd/jmespath-free@latest` |
 | Go MCP server | `github.com/voxgig-sdk/jmespath-free-sdk/go-mcp` | `go get github.com/voxgig-sdk/jmespath-free-sdk/go-mcp@latest` |
 
