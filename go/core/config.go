@@ -91,20 +91,17 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "data",
+						"title": "Data",
+						"type": "`$ANY`",
 						"req": true,
 						"short": "The JSON object or array to transform",
-						"type": "`$ANY`",
-						"union": map[string]any{
-							"branches": 2,
-							"count": 1,
-							"depth": 0,
-						},
 					},
 					map[string]any{
 						"name": "query",
+						"title": "Query",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "The JMESPath expression string to evaluate against the data",
-						"type": "`$STRING`",
 					},
 				},
 				"name": "jmes_path",
@@ -114,7 +111,6 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/jmespath",
@@ -123,14 +119,16 @@ func MakeConfig() map[string]any {
 										"lit": "jmespath",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"jmespath",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"jmespath",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},

@@ -74,42 +74,33 @@ declare class Config {
     };
     entity: {
         jmes_path: {
-            fields: ({
+            fields: {
                 name: string;
+                title: string;
+                type: string;
                 req: boolean;
                 short: string;
-                type: string;
-                union: {
-                    branches: number;
-                    count: number;
-                    depth: number;
-                };
-            } | {
-                name: string;
-                req: boolean;
-                short: string;
-                type: string;
-                union?: undefined;
-            })[];
+            }[];
             name: string;
             op: {
                 create: {
                     input: string;
                     name: string;
                     points: {
-                        args: {};
                         kind: string;
                         method: string;
                         orig: string;
                         segments: {
                             lit: string;
                         }[];
-                        select: {};
+                        parts: string[];
+                        rename: {};
                         transform: {
                             req: string;
                             res: string;
                         };
-                        parts: string[];
+                        args: {};
+                        select: {};
                     }[];
                 };
             };

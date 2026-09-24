@@ -11,19 +11,12 @@ const FEATURE_CLASS = {
     test: TestFeature_1.TestFeature,
     timeout: TimeoutFeature_1.TimeoutFeature,
 };
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS = {};
 exports.FEATURE_PLUGINS = FEATURE_PLUGINS;
 class Config {
     makeFeature(fn) {
         const fc = FEATURE_CLASS[fn];
         const fi = new fc();
-        // TODO: errors etc
         return fi;
     }
     // False for a feature added at runtime via options.extend (station's
@@ -114,20 +107,17 @@ class Config {
             "fields": [
                 {
                     "name": "data",
-                    "req": true,
-                    "short": "The JSON object or array to transform",
+                    "title": "Data",
                     "type": "`$ANY`",
-                    "union": {
-                        "branches": 2,
-                        "count": 1,
-                        "depth": 0
-                    }
+                    "req": true,
+                    "short": "The JSON object or array to transform"
                 },
                 {
                     "name": "query",
+                    "title": "Query",
+                    "type": "`$STRING`",
                     "req": true,
-                    "short": "The JMESPath expression string to evaluate against the data",
-                    "type": "`$STRING`"
+                    "short": "The JMESPath expression string to evaluate against the data"
                 }
             ],
             "name": "jmes_path",
@@ -137,7 +127,6 @@ class Config {
                     "name": "create",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/jmespath",
@@ -146,14 +135,16 @@ class Config {
                                     "lit": "jmespath"
                                 }
                             ],
-                            "select": {},
+                            "parts": [
+                                "jmespath"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "jmespath"
-                            ]
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 }

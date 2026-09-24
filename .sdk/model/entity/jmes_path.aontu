@@ -1,0 +1,58 @@
+# Entity: jmes_path
+
+main: kit: entity: jmes_path: {
+
+  alias: field: {}
+
+  fields: {
+    data: {
+      h: "Data"
+      n: "data"
+      r: true
+      sh: "The JSON object or array to transform"
+      t: "`$ANY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 0
+      }
+    }
+    query: {
+      h: "Query"
+      n: "query"
+      r: true
+      sh: "The JMESPath expression string to evaluate against the data"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "jmes_path"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /jmespath"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/jmespath"
+          s: [
+            {
+              lit: "jmespath"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

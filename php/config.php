@@ -113,20 +113,17 @@ class JmespathFreeConfig
           'fields' => [
             [
               'name' => 'data',
+              'title' => 'Data',
+              'type' => '`$ANY`',
               'req' => true,
               'short' => 'The JSON object or array to transform',
-              'type' => '`$ANY`',
-              'union' => [
-                'branches' => 2,
-                'count' => 1,
-                'depth' => 0,
-              ],
             ],
             [
               'name' => 'query',
+              'title' => 'Query',
+              'type' => '`$STRING`',
               'req' => true,
               'short' => 'The JMESPath expression string to evaluate against the data',
-              'type' => '`$STRING`',
             ],
           ],
           'name' => 'jmes_path',
@@ -136,7 +133,6 @@ class JmespathFreeConfig
               'name' => 'create',
               'points' => [
                 [
-                  'args' => [],
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/jmespath',
@@ -145,14 +141,16 @@ class JmespathFreeConfig
                       'lit' => 'jmespath',
                     ],
                   ],
-                  'select' => [],
+                  'parts' => [
+                    'jmespath',
+                  ],
+                  'rename' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'parts' => [
-                    'jmespath',
-                  ],
+                  'args' => [],
+                  'select' => [],
                 ],
               ],
             ],
