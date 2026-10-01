@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 JmespathFreeUtility.registrar = ->(u) {
   u.clean = JmespathFreeUtilities::Clean
+  u.clean_add = JmespathFreeUtilities::CleanAdd
+  u.clean_explain = JmespathFreeUtilities::CleanExplain
   u.done = JmespathFreeUtilities::Done
   u.make_error = JmespathFreeUtilities::MakeError
   u.feature_add = JmespathFreeUtilities::FeatureAdd

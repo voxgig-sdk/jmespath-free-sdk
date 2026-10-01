@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 JmespathFreeUtility::setRegistrar(function (JmespathFreeUtility $u): void {
     $u->clean = [JmespathFreeClean::class, 'call'];
+    $u->clean_add = [JmespathFreeClean::class, 'add'];
+    $u->clean_explain = [JmespathFreeDone::class, 'clean_explain'];
     $u->done = [JmespathFreeDone::class, 'call'];
     $u->make_error = [JmespathFreeMakeError::class, 'call'];
     $u->feature_add = [JmespathFreeFeatureAdd::class, 'call'];
