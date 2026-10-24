@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { JmespathFreeSDK, BaseFeature, stdutil } from '../../..'
+import { JmespathFreeSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,18 @@ describe('JmesPathEntity', async () => {
   })
 
 
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = JmespathFreeSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.JmesPath().create({"data":"x","query":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.JMESPATH_FREE_TEST_LIVE
@@ -51,7 +63,7 @@ describe('JmesPathEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"data":{"a":true,"h":"Data","n":"data","r":true,"sh":"The JSON object or array to transform","t":"`$ANY`","union":{"branches":2,"count":1,"depth":0},"key$":"data","index$":0},"query":{"a":true,"h":"Query","n":"query","r":true,"sh":"The JMESPath expression string to evaluate against the data","t":"`$STRING`","key$":"query","index$":1}},"name":"jmes_path","op":{"create":{"input":"data","name":"create","points":[{"a":true,"co":{"id":"POST /jmespath","source":"openapi3","version":2},"g":{},"k":"http","m":"POST","o":"/jmespath","q":{},"r":{},"s":[{"lit":"jmespath"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"create"}},"relations":{"ancestors":[]},"key$":"jmes_path","name__orig":"jmes_path","Name":"JmesPath","name_":"jmes_path","name-":"jmes-path","NAME":"JMES_PATH","index$":0}, {"active":true,"entity":"jmes_path","key$":"BasicJmesPathFlow","kind":"basic","name":"BasicJmesPathFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"jmes_path_ref01"},"m":{},"o":"create","s":[],"v":[],"index$":0}]}, 'JmesPath', {"POST /jmespath":{"protocol":"http","requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["data","query"],"properties":{"data":{"oneOf":[{"type":"object"},{"type":"array"}],"description":"The JSON object or array to transform","key$":"data"},"query":{"type":"string","description":"The JMESPath expression string to evaluate against the data","example":"people[?age>`25`].name","key$":"query"}},"index$":1},"examples":{"filterPeople":{"summary":"Filter people by age","value":{"data":{"people":[{"name":"Ana","age":30},{"name":"Bob","age":20}]},"query":"people[?age>`25`].name"}},"filterTasks":{"summary":"Filter unfinished tasks","value":{"data":{"tasks":[{"title":"Draft docs","completed":false,"priority":2},{"title":"Send invoice","completed":true,"priority":1},{"title":"Plan launch","completed":false,"priority":3}]},"query":"tasks[?completed==`false`].title"}},"projectNestedFields":{"summary":"Project nested contact fields","value":{"data":{"customers":[{"name":"Asha Patel","contact":{}},{"name":"Lee Wong","contact":{}}]},"query":"customers[].{name: name, email: contact.email}"}},"sortAndLimit":{"summary":"Sort by rating and get top results","value":{"data":{"products":[{"name":"Starter","rating":4.2},{"name":"Pro","rating":4.8},{"name":"Enterprise","rating":4.6}]},"query":"reverse(sort_by(products, &rating))[:2].name"}}}}}},"parameters":[]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"data":{"a":true,"h":"Data","n":"data","r":true,"sh":"The JSON object or array to transform","t":"`$ANY`","union":{"branches":2,"count":1,"depth":0},"key$":"data","index$":0},"query":{"a":true,"h":"Query","n":"query","r":true,"sh":"The JMESPath expression string to evaluate against the data","t":"`$STRING`","key$":"query","index$":1}},"name":"jmes_path","op":{"create":{"input":"data","name":"create","points":[{"a":true,"bf":["data","query"],"co":{"id":"POST /jmespath","source":"openapi3","version":2},"g":{},"k":"http","m":"POST","o":"/jmespath","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"jmespath"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"create"}},"relations":{"ancestors":[]},"key$":"jmes_path","name__orig":"jmes_path","Name":"JmesPath","name_":"jmes_path","name-":"jmes-path","NAME":"JMES_PATH","index$":0}, {"active":true,"entity":"jmes_path","key$":"BasicJmesPathFlow","kind":"basic","name":"BasicJmesPathFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"jmes_path_ref01"},"m":{},"o":"create","s":[],"v":[],"index$":0}]}, 'JmesPath', {"POST /jmespath":{"protocol":"http","requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["data","query"],"properties":{"data":{"oneOf":[{"type":"object"},{"type":"array"}],"description":"The JSON object or array to transform","key$":"data"},"query":{"type":"string","description":"The JMESPath expression string to evaluate against the data","example":"people[?age>`25`].name","key$":"query"}},"index$":1},"examples":{"filterPeople":{"summary":"Filter people by age","value":{"data":{"people":[{"name":"Ana","age":30},{"name":"Bob","age":20}]},"query":"people[?age>`25`].name"}},"filterTasks":{"summary":"Filter unfinished tasks","value":{"data":{"tasks":[{"title":"Draft docs","completed":false,"priority":2},{"title":"Send invoice","completed":true,"priority":1},{"title":"Plan launch","completed":false,"priority":3}]},"query":"tasks[?completed==`false`].title"}},"projectNestedFields":{"summary":"Project nested contact fields","value":{"data":{"customers":[{"name":"Asha Patel","contact":{}},{"name":"Lee Wong","contact":{}}]},"query":"customers[].{name: name, email: contact.email}"}},"sortAndLimit":{"summary":"Sort by rating and get top results","value":{"data":{"products":[{"name":"Starter","rating":4.2},{"name":"Pro","rating":4.8},{"name":"Enterprise","rating":4.6}]},"query":"reverse(sort_by(products, &rating))[:2].name"}}}}}},"parameters":[]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +84,12 @@ describe('JmesPathEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

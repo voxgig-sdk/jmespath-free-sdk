@@ -3,11 +3,16 @@ declare(strict_types=1);
 
 // JmespathFree SDK utility: prepare_body
 
+require_once __DIR__ . '/Media.php';
+
 class JmespathFreePrepareBody
 {
     public static function call(JmespathFreeContext $ctx): mixed
     {
         if ($ctx->op->input === 'data') {
+            if (JmespathFreeMedia::isRawRequest($ctx->point)) {
+                return JmespathFreeMedia::rawBody($ctx->reqdata);
+            }
             $body = ($ctx->utility->transform_request)($ctx);
             // PHP cannot tell an empty map from an empty list, and this
             // vendored struct answers [] where the canonical transform

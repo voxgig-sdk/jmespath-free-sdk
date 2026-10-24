@@ -32,6 +32,10 @@ main: kit: entity: jmes_path: {
       name: "create"
       points: [
         {
+          bf: [
+            "data"
+            "query"
+          ]
           co: {
             id: "POST /jmespath"
             source: "openapi3"
@@ -39,6 +43,10 @@ main: kit: entity: jmes_path: {
           }
           m: "POST"
           o: "/jmespath"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "jmespath"
